@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webcam Snapshot</title>
+
+  <style type="text/css">
+    #camContainer {
+      width: 600px;
+      height: 450px;
+    }
+
+    #picture_from_cam {
+      position: fixed;top: 0;right: 0;
+    }
+    #picture_from_cam img {
+      border: solid 1px #000;
+      width: 500px;
+      height: auto;
+    }
+  </style>
+
+</head>
+<body>
+
+  <button onclick="take_snapshot()">Take Snapshot</button>
+  <div id="camContainer"></div>
+  <div id="picture_from_cam"></div>
+
+  <script src="webcam.min.js"></script>
+  <script type="text/javascript">
+    Webcam.attach( '#camContainer' );
+    
+    function take_snapshot() {
+      Webcam.snap( function(img_data_url) {
+        document.getElementById('picture_from_cam').innerHTML = '<img src="'+img_data_url+'"/>';
+      } );
+    }
+  </script>
+
+</body>
+</html>
